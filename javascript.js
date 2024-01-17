@@ -27,3 +27,9 @@ let squareDivWidth = rootStyles.getPropertyValue('--squareDivWidth');
 let squareDivHeight = rootStyles.getPropertyValue('--squareDivHeight');
 root.style.setProperty('--squareDivWidth',`${xSize}px`);
 root.style.setProperty('--squareDivHeight',`${ySize}px`);
+
+const divContainer = document.querySelector('.container');
+
+divContainer.addEventListener("mouseover", (event) => {
+    event.target.classList.add('blackDivSquare');
+});
