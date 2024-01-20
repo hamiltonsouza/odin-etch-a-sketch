@@ -1,11 +1,25 @@
 function createCanvas() {
-    const canvasLength = prompt('Please, enter the desired canvas size:');
-    const canvasHeight = canvasLength;
-    setCanvasSize(canvasLength,canvasHeight);
-    const container = document.querySelector('.container');
-    const allSquares = document.querySelectorAll('.squareDiv');
-    resetCanvas(container,allSquares);
-    createDivs(canvasLength,canvasHeight);
+    const canvasLength = parseInt(prompt('Please, enter the desired canvas size:'));
+    if (isNaN(canvasLength)) {
+        alert('It must be a number!');
+        createCanvas();
+        return;
+    } else if (canvasLength < 0) {
+        alert('It must be a positive number!');
+        createCanvas();
+        return;
+    } else if (canvasLength > 100) {
+        alert('It must be less than a hundred!');
+        createCanvas();
+        return;
+    } else {
+        const canvasHeight = canvasLength;
+        setCanvasSize(canvasLength,canvasHeight);
+        const container = document.querySelector('.container');
+        const allSquares = document.querySelectorAll('.squareDiv');
+        resetCanvas(container,allSquares);
+        createDivs(canvasLength,canvasHeight);
+    }
 };
 
 function setCanvasSize(xDivs,yDivs) {
