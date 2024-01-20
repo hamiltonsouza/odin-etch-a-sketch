@@ -8,10 +8,12 @@
     --squareDivHeight: 0px;
 }
 
-body {
+.content {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     flex-direction: column;
+    height: 100vh;
 }
 
 .container {
@@ -21,7 +23,9 @@ body {
     width: 900px;
     height: 900px;
     align-items: center;
-    justify-content: center;
+    justify-content:space-evenly;
+    background-color: black;
+    border: 1px solid black;
 
 }
 

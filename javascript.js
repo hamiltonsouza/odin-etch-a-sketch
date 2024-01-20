@@ -1,4 +1,27 @@
-function divCreator(xDivs,yDivs) {
+function createCanvas() {
+    const canvasLength = prompt('Please, enter the desired canvas size:');
+    const canvasHeight = canvasLength;
+    setCanvasSize(canvasLength,canvasHeight);
+    const container = document.querySelector('.container');
+    const allSquares = document.querySelectorAll('.squareDiv');
+    resetCanvas(container,allSquares);
+    createDivs(canvasLength,canvasHeight);
+};
+
+function setCanvasSize(xDivs,yDivs) {
+    let xSize = Math.floor(900 / xDivs);
+    let ySize = Math.floor(900 / yDivs);
+    let root = document.querySelector(':root');
+    root.style.setProperty('--squareDivWidth',`${xSize}px`);
+    root.style.setProperty('--squareDivHeight',`${ySize}px`);
+};
+
+function resetCanvas(container,allSquares) {
+    const allSquaresArray = Array.from(allSquares);
+    allSquaresArray.forEach((square) => container.removeChild(square));
+};
+
+function createDivs(xDivs,yDivs) {
     for (let i = 1; i <= xDivs; i++) {
         for (let j = 1; j <= yDivs; j++) {
             const container = document.querySelector('.container');
@@ -13,23 +36,12 @@ function divCreator(xDivs,yDivs) {
     }
 };
 
-let xDivs = 16;
-let yDivs = 16;
-
-let xSize = Math.floor(900 / xDivs);
-let ySize = Math.floor(900 / yDivs);
-
-divCreator(xDivs,yDivs);
-
-let root = document.querySelector(':root');
-let rootStyles = getComputedStyle(root);
-let squareDivWidth = rootStyles.getPropertyValue('--squareDivWidth');
-let squareDivHeight = rootStyles.getPropertyValue('--squareDivHeight');
-root.style.setProperty('--squareDivWidth',`${xSize}px`);
-root.style.setProperty('--squareDivHeight',`${ySize}px`);
-
 const divContainer = document.querySelector('.container');
-
-divContainer.addEventListener("mouseover", (event) => {
+divContainer.addEventListener('mouseover', (event) => {
     event.target.classList.add('blackDivSquare');
 });
+
+const resetButton = document.querySelector('.reset-button');
+resetButton.addEventListener('click', createCanvas);
+
+createCanvas();
